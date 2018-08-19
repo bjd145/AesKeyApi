@@ -91,5 +91,11 @@ func main() {
 	apirouter.Methods("OPTIONS").Path("/keys").HandlerFunc(handler.optionsHandler)
 
 	server := cors.Default().Handler(r)
-	log.Fatal(http.ListenAndServe(":8081", server))
+
+	port := ":8081"
+	if os.Getenv("AES_KEYS_PORT") != "" {
+		port = os.Getenv("AES_KEYS_PORT")
+	} 
+	fmt.Print("Listening on ", port)
+	log.Fatal(http.ListenAndServe( port , server))
 }
