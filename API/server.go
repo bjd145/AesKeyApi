@@ -25,7 +25,7 @@ type Random struct {
 	AesKey string
 }
 
-func getKey() (string) {
+func createKey() (string) {
 	key := make([]byte, 64) 
 	if _, err := rand.Read(key); err != nil {
 		panic(err.Error())
@@ -42,7 +42,7 @@ func createMessage() (Random) {
 		time.Now().Format(time.RFC850), 
 		host, 
 		rand.Intn(max-min),
-		getKey()}
+		createKey()}
 	return msg
 }
 
