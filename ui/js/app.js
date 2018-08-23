@@ -1,4 +1,4 @@
-var server_url = "http://localhost:8081";
+const server_url = "http://localhost:8081";
 
 Vue.component('key-item', {
   props: ['k', 'index'],
