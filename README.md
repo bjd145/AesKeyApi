@@ -9,6 +9,6 @@ This is a sample API only. Do not use in Production
 - [x] POST to API to get more than one key
 - [x] Parameterize API to listen on port defined in an ENV variable
 - [X] Parameterize UI for REST API endpoint
-- [ ] Update Kubernetes Deployment manifest for API. Destination - Azure App Services for Containers
-- [ ] Create deployment for the UI. Destination - Static Website Hosting on Azure Blob Storage (https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website)
-- [ ] Update azure_deploy.sh to create resources in Azure for application and deploy code.
+- [X] Update Kubernetes Deployment manifest for API. Destination - Azure App Services for Containers
+- [X] Create deployment for the UI. Destination - Static Website Hosting on Azure Blob Storage (https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website)
+- [X] Update azure_deploy.sh to create resources in Azure for application and deploy code.

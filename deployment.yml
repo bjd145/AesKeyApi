@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aeskeyapi
+  labels:
+    app:  aeskeyapi
+    lang: golang
+spec:
+  containers:
+  - name: aeskeyapi
+    image: bjd145/aeskeyapi:1.0
+    ports:
+       - containerPort: 8081
