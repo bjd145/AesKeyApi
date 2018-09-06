@@ -7,8 +7,14 @@
 az login 
 az extension add --name webapp
 az group create -n MultiContainerExample -l centralus
+
+#Azure App Service 
 az appservice plan create -g MultiContainerExample -n bjdlinuxasp --is-linux --sku S1 -l centralus
-az webapp create -g MultiContainerExample -n bjdweb003 -p bjdlinuxasp --multicontainer-config-file ./deployment.yml --multicontainer-config-type KUBE
+az webapp create -g MultiContainerExample -n bjdweb003 -p bjdlinuxasp001  --deployment-container-image-name bjd145/aeskeyapi:1.0
+az webapp config appsettings set -g MultiContainerExample -n bjdweb003 --settings PORT=8081
+
+#or AKS 
+kubectl apply -f https://raw.githubusercontent.com/bjd145/AesKeyApi/master/k8s-deploy.yml
 
 az storage account create -n bjdweb001 -g MultiContainerExample --kind Storagev2 -l centralus --https-only --sku Standard_GRS
 az extension add --name storage-preview 
