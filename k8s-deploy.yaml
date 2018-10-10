@@ -1,16 +1,27 @@
-apiVersion: v1
-kind: Pod
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
-  name: aeskeyapi
-  labels:
-    app:  aeskeyapi
-    lang: golang
+  name: aeskeyapideployment
 spec:
-  containers:
-  - name: aeskeyapi
-    image: bjd145/aeskeyapi:1.0
-    ports:
-       - containerPort: 8081
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: aeskeyapi
+        lang: golang
+    spec:
+      containers:
+      - name: aeskeyapi
+        image: bjd145/aeskeyapi:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
 ---
 apiVersion: v1
 kind: Service
@@ -18,6 +29,8 @@ metadata:
   name: aeskeyapisvc
   labels:
     version: "1.0"
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   selector:
     app: aeskeyapi
