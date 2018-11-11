@@ -13,10 +13,10 @@ az appservice plan create -g MultiContainerExample -n bjdlinuxasp --is-linux --s
 az webapp create -g MultiContainerExample -n bjdweb003 -p bjdlinuxasp001  --deployment-container-image-name bjd145/aeskeyapi:1.0
 az webapp config appsettings set -g MultiContainerExample -n bjdweb003 --settings PORT=8081
 
-#or AKS 
-kubectl apply -f https://raw.githubusercontent.com/bjd145/AesKeyApi/master/k8s-deploy.yml
-
 az storage account create -n bjdweb001 -g MultiContainerExample --kind Storagev2 -l centralus --https-only --sku Standard_GRS
 az extension add --name storage-preview 
 az storage blob service-properties update --account-name bjdweb001 --static-website --404-document 404.html --index-document index.html
 az storage blob upload-batch -s src/ui -d '$web' --account-name bjdweb001
+
+#or AKS 
+kubectl apply -f https://raw.githubusercontent.com/bjd145/AesKeyApi/master/k8s-deploy.yml

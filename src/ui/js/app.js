@@ -1,4 +1,4 @@
-const server_url = "https://bjdweb003.azurewebsites.net";
+const server_url = "http://aeskeyapi";
 
 Vue.component('key-item', {
   props: ['k', 'index'],
