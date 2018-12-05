@@ -2,7 +2,7 @@ const server_url = "http://aeskeyapi";
 
 Vue.component('key-item', {
   props: ['k', 'index'],
-  template:'\
+  template: '\
   <span>\
         <h6 class="list-group-item-heading">Host: {{k.Host }}</h6>\
         <p class="list-group-item-text" v-if="k.Time">Time Generated: {{ k.Time }}</p>\
@@ -16,10 +16,10 @@ var app = new Vue({
 
   data: {
     k: { Time: '', Host: '', Number: '', AesKey: '', NumberOfKeys: '' },
-    keys: []  
+    keys: []
   },
   delimiters: ['${', '}'],
-  
+
   mounted: function () {
     this.fetchKey();
   },
@@ -31,25 +31,25 @@ var app = new Vue({
         .then(response => response.json())
         .then(result => {
           Vue.set(this.$data, 'keys', result);
-          console.log("success in getting keys")  
+          console.log("success in getting keys")
         })
         .catch(err => {
-            console.log(err);
+          console.log(err);
         });
     },
 
     fetchKeys: function () {
       var keys = [];
       if (this.k.NumberOfKeys.trim()) {
-        this.$http.post(server_url + "/api/keys", { "NumberOfKeys": parseInt(this.k.NumberOfKeys.trim(), 10) } )
+        this.$http.post(server_url + "/api/keys", { "NumberOfKeys": parseInt(this.k.NumberOfKeys.trim(), 10) })
           .then(response => response.json())
           .then(result => {
             Vue.set(this.$data, 'keys', result);
-            console.log("success in getting keys")  
+            console.log("success in getting keys")
           })
           .catch(err => {
             console.log(err);
-         });
+          });
       }
     }
   }
