@@ -3,6 +3,10 @@ This Repo contains code for a silly little REST API so I can continue to learn G
 This REST API will generate 256-bit keys that could be use for AES encryption.
 This is a sample API only. Do not use in Production 
 
+# To Build
+* export GOPATH=~/code/Github/AesKeyApi/Source/api
+* go build .
+
 # Todo
 - [x] Create basic API 
 - [x] Create UI to get 1 KEY
